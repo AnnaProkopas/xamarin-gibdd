@@ -24,6 +24,8 @@ namespace Gibdd
 
             var secondLabel = new Label();
             secondLabel.Text = "I'm the second";
+            ImageSource imageSource = ImageSource.FromUri(new Uri("https://cdn.kapwing.com/final_5d0bcfdd9d322b0014964492_224032.jpg"));
+            image.Source = imageSource;
 
             //(this.Content as StackLayout)
             layout.Children.Add(secondLabel);
