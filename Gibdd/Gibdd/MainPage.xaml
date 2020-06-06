@@ -10,6 +10,11 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="btnStyle" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="IsPressed" Value="True" TargetType="Button">
+                        <Setter Property="BackgroundColor" Value="LightCyan"/>
+                    </Trigger>
+                </Style.Triggers>
                 <Setter Property="TextColor" Value="#0000FF"/>
                 <Setter Property="BackgroundColor">
                     <Setter.Value>
@@ -34,6 +39,7 @@
                 Clicked="Button_Clicked" 
                 VerticalOptions="CenterAndExpand"
                 Style="{StaticResource btnStyle}"/>
+            <Entry x:Name="NumberBox" />
             <Button 
                 x:Name="btn_switch_color" 
                 Text="Switch to GREEN" 

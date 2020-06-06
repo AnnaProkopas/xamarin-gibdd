@@ -18,6 +18,20 @@ namespace Gibdd
         public MainPage()
         {
             InitializeComponent();
+
+            var trigger = new Trigger(typeof(Entry));
+            trigger.Property = Entry.IsFocusedProperty;
+            trigger.Value = true;
+
+            trigger.Setters.Add(new Setter() {
+                Property = BackgroundColorProperty,
+                Value = Color.LightSeaGreen
+            });
+
+            trigger.EnterActions.A(new MyTriggerAction());
+            trigger.ExitActions.Add(new MyTriggerAction());
+
+            NumberBox.Triggers.Add(trigger);
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -38,6 +52,20 @@ namespace Gibdd
         private void Button_Switch_Color_Clicked(object sender, EventArgs e)
         {
             Resources["buttonColor"] = Color.LawnGreen;
+        }
+
+        public class MyTriggerAction : TriggerAction<Entry>
+        {
+            protected override void Invoke(Entry sender)
+            {
+                if (sender.IsFocused)
+                {
+                    sender.FadeTo(1);
+                }
+                else {
+                    sender.FadeTo(0.5);
+                }
+            }
         }
     }
 }
