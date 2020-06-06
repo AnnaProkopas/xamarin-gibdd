@@ -8,31 +8,7 @@
              x:Class="Gibdd.MainPage">
     <ScrollView>
         <StackLayout x:Name="layout">
-            <WebView Source="https://ya.ru" HeightRequest="500" />
-            <TableView Intent="Form">
-                <TableView.Root>
-                    <TableRoot>
-                        <TableSection>
-                            <EntryCell Label="Hello" />
-                            <SwitchCell />
-                            <TextCell Text="Delete me"/>
-                            <!--<ImageCell/>-->
-                        </TableSection>
-                    </TableRoot>
-                </TableView.Root>
-            </TableView>
-            <Stepper />
-            <Slider />
-            <DatePicker />
-            <TimePicker />
-            <Picker>
-                <Picker.Items>
-                    <x:String>First one</x:String>
-                    <x:String>Second one</x:String>
-                    <x:String>Third one</x:String>
-                </Picker.Items>
-            </Picker>
-            <Switch />
+            <Button x:Name="btn" Text="Alert" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
