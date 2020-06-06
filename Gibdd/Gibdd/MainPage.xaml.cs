@@ -19,40 +19,5 @@ namespace Gibdd
         {
             InitializeComponent();
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            switch (Device.Idiom)
-            {
-                case TargetIdiom.Phone:
-                    btn.Text = "btn on phone";
-                    break;
-                case TargetIdiom.Tablet:
-                    btn.Text = "btn on tablet";
-                    break;
-                case TargetIdiom.Watch:
-                    btn.Text = "btn on watch";
-                    break;
-            }
-        }
-
-        private void Button_Switch_Color_Clicked(object sender, EventArgs e)
-        {
-            Resources["buttonColor"] = Color.LawnGreen;
-        }
     }
-    public class MyTriggerAction : TriggerAction<Entry>
-    {
-        protected override void Invoke(Entry sender)
-        {
-            if (!Int32.TryParse(sender.Text, out var number))
-            {
-                sender.BackgroundColor = Color.IndianRed;
-            }
-            else {
-                sender.BackgroundColor = Color.GreenYellow;
-            }
-        }
-    }
-    
 }

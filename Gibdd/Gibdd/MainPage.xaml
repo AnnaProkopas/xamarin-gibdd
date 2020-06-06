@@ -7,66 +7,19 @@
              xmlns:gibdd="clr-namespace:Gibdd"
              x:Class="Gibdd.MainPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="entryStyle" TargetType="Entry">
-                <Style.Triggers>
-                    <EventTrigger Event="TextChanged">
-                        <gibdd:MyTriggerAction/>
-                    </EventTrigger>
-                </Style.Triggers>
-            </Style>
-            <Style x:Key="btnStyle" TargetType="Button">
-                <Style.Triggers>
-                    <Trigger Property="IsPressed" Value="True" TargetType="Button">
-                        <Setter Property="BackgroundColor" Value="LightCyan"/>
-                    </Trigger>
-                </Style.Triggers>
-                <Setter Property="TextColor" Value="#0000FF"/>
-                <Setter Property="BackgroundColor">
-                    <Setter.Value>
-                        <Color>
-                            <x:Arguments>
-                                <x:Double>1</x:Double>
-                                <x:Double>0.6</x:Double>
-                                <x:Double>0.6</x:Double>
-                            </x:Arguments>
-                        </Color>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
     <ScrollView>
         <StackLayout x:Name="layout">
-            <Button 
-                x:Name="btn" 
-                Text="Alert" 
-                Clicked="Button_Clicked" 
-                VerticalOptions="CenterAndExpand"
-                Style="{StaticResource btnStyle}"/>
-            <Entry x:Name="NumberBox" Style="{StaticResource entryStyle}"/>
-            <Button 
-                x:Name="btn_switch_color" 
-                Text="Switch to GREEN" 
-                Clicked="Button_Switch_Color_Clicked" 
-                VerticalOptions="CenterAndExpand"
-                Style="{DynamicResource btnStyle}"/>
-            <Button 
-                x:Name="btn_menu" 
-                Text="Menu" 
-                VerticalOptions="CenterAndExpand"
-                BackgroundColor="{StaticResource Key=buttonColorMenu}"/>
-            <Label>
-                <Label.Text>
-                    <OnPlatform
-                        x:TypeArguments="x:String"
-                        iOS="ios"
-                        Android="Android"
-                        />
-                </Label.Text>
-            </Label>
+            <Slider x:Name="slider" Minimum="0" Maximum="360" />
+            <Label 
+                Text="Rotate me"  
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand" 
+                BindingContext="{x:Reference Name=slider}"
+                Rotation="{Binding Path=Value}"
+             />
+            <Entry x:Name="editBox" />
+            <Label BindingContext="{x:Reference Name=editBox}"
+                   Text="{Binding Path=Text}" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
