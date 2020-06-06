@@ -6,30 +6,10 @@
              mc:Ignorable="d"
              xmlns:gibdd="clr-namespace:Gibdd"
              x:Class="Gibdd.MainPage">
-<!-- xmlns  пространства имен -->
-<!-- xmlns:x всё, что нужно для компиляции в C# код -->
-<!-- xmlns:d  для дизайнеров, здесь это игнорируется при запуске-->
-    <ScrollView>
-        <!--<AbsoluteLayout>
-            <BoxView AbsoluteLayout.LayoutBounds="100, 100, 200, 200"/> -->
-        <!--<RelativeLayout>
-            <BoxView RelativeLayout.YConstraint="100"/>
-            <BoxView RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property= Height, factor=0.5}"/>
-        </RelativeLayout> -->
-        <!--<FlexLayout>-->
-        <!--<Grid>
-                <Grid.RowDefenition>
-                    <RowDefenition Height="*" />
-                    <RowDefenition Height="*" />
-                    <RowDefenition Height="*" />
-                </Grid.RowDefenition>
-                <Grid.ColumnDefenition>
-                    <ColumnDefenition Width="*" />
-                    <ColumnDefenition Width="*" />
-                </Grid.ColumnDefenition>
-                <BoxView Grid.Column="1" Grid.Row="2/>
-        -->
-        <StackLayout x:Name="layout">
+
+    <StackLayout x:Name="layout">
+        <StackLayout BackgroundColor="Gray" Padding="50" Margin="20">
+            <BoxView Color="Green"/>
             <ListView VerticalOptions="Center" HeightRequest="100">
                 <ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -39,9 +19,9 @@
                 </ListView.ItemsSource>
             </ListView>
             <Label Text="Welcome to Xamarin.Forms!" 
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand"
-               BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
             <Label x:Name="complexLabel">
                 <Label.Text>
                     I'm thr complex designed label
@@ -53,5 +33,5 @@
             <Label Text="{x:Static gibdd:MainPage.LabelSampleText}"/>
             <Button Text="Click me" Clicked="Button_Clicked"/>
         </StackLayout>
-
+    </StackLayout>
 </ContentPage>
