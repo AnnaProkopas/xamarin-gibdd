@@ -18,7 +18,7 @@
                     </x:Array>
                 </ListView.ItemsSource>
             </ListView>
-            <Label Text="Welcome to Xamarin.Forms!" 
+            <Label x:Name="defaultLabel" Text="Welcome to Xamarin.Forms!" 
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
             BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
@@ -37,6 +37,9 @@
             </Label>
             <Label Text="{x:Static gibdd:MainPage.LabelSampleText}"/>
             <Button Text="Click me" Clicked="Button_Clicked"/>
+            <Entry x:Name="editBox"  Placeholder="No text here" TextChanged="Entry_TextChanged" Completed="Entry_Completed" Keyboard="Url"/>
+            <Editor HeightRequest="100"/>
+            <!-- entry with many lines -->
         </StackLayout>
     </StackLayout>
 </ContentPage>

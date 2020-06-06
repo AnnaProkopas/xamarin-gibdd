@@ -33,6 +33,16 @@ namespace Gibdd
         {
             complexLabel.Text = "I'm clicked";
         }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            defaultLabel.Text = "You wrote " + e.NewTextValue;
+        }
+
+        private void Entry_Completed(object sender, EventArgs e)
+        {
+            defaultLabel.Text = "Ok, got it: " + editBox.Text;
+        }
     }
 
     public class RedColorExtension : IMarkupExtension
