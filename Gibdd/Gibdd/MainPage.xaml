@@ -9,6 +9,15 @@
     <ScrollView>
         <StackLayout x:Name="layout">
             <Button x:Name="btn" Text="Alert" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand" />
+            <Label>
+                <Label.Text>
+                    <OnPlatform
+                        x:TypeArguments="x:String"
+                        iOS="ios"
+                        Android="Android"
+                        />
+                </Label.Text>
+            </Label>
         </StackLayout>
     </ScrollView>
 </ContentPage>
