@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              x:Class="Gibdd.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="buttonColorMenu">#CCCCFF</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

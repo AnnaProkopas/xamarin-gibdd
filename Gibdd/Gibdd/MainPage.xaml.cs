@@ -34,5 +34,10 @@ namespace Gibdd
                     break;
             }
         }
+
+        private void Button_Switch_Color_Clicked(object sender, EventArgs e)
+        {
+            Resources["buttonColor"] = Color.LawnGreen;
+        }
     }
 }

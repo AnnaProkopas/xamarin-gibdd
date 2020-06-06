@@ -6,9 +6,32 @@
              mc:Ignorable="d"
              xmlns:gibdd="clr-namespace:Gibdd"
              x:Class="Gibdd.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="buttonColor">#FFCCCC</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ScrollView>
         <StackLayout x:Name="layout">
-            <Button x:Name="btn" Text="Alert" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand" />
+            <Button 
+                x:Name="btn" 
+                Text="Alert" 
+                Clicked="Button_Clicked" 
+                VerticalOptions="CenterAndExpand"
+                BackgroundColor="{StaticResource Key=buttonColor}"/>
+            <Button 
+                x:Name="btn_switch_color" 
+                Text="Switch to GREEN" 
+                Clicked="Button_Switch_Color_Clicked" 
+                VerticalOptions="CenterAndExpand"
+                BackgroundColor="{DynamicResource Key=buttonColor}"/>
+            <Button 
+                x:Name="btn_menu" 
+                Text="Menu" 
+                VerticalOptions="CenterAndExpand"
+                BackgroundColor="{StaticResource Key=buttonColorMenu}"/>
             <Label>
                 <Label.Text>
                     <OnPlatform
