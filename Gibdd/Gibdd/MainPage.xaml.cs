@@ -18,25 +18,12 @@ namespace Gibdd
         public MainPage()
         {
             InitializeComponent();
-
-            var trigger = new Trigger(typeof(Entry));
-            trigger.Property = Entry.IsFocusedProperty;
-            trigger.Value = true;
-
-            trigger.Setters.Add(new Setter() {
-                Property = BackgroundColorProperty,
-                Value = Color.LightSeaGreen
-            });
-
-            trigger.EnterActions.A(new MyTriggerAction());
-            trigger.ExitActions.Add(new MyTriggerAction());
-
-            NumberBox.Triggers.Add(trigger);
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            switch (Device.Idiom) {
+            switch (Device.Idiom)
+            {
                 case TargetIdiom.Phone:
                     btn.Text = "btn on phone";
                     break;
@@ -53,19 +40,19 @@ namespace Gibdd
         {
             Resources["buttonColor"] = Color.LawnGreen;
         }
-
-        public class MyTriggerAction : TriggerAction<Entry>
+    }
+    public class MyTriggerAction : TriggerAction<Entry>
+    {
+        protected override void Invoke(Entry sender)
         {
-            protected override void Invoke(Entry sender)
+            if (!Int32.TryParse(sender.Text, out var number))
             {
-                if (sender.IsFocused)
-                {
-                    sender.FadeTo(1);
-                }
-                else {
-                    sender.FadeTo(0.5);
-                }
+                sender.BackgroundColor = Color.IndianRed;
+            }
+            else {
+                sender.BackgroundColor = Color.GreenYellow;
             }
         }
     }
+    
 }

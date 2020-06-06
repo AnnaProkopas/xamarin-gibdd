@@ -9,6 +9,13 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Style.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <gibdd:MyTriggerAction/>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
             <Style x:Key="btnStyle" TargetType="Button">
                 <Style.Triggers>
                     <Trigger Property="IsPressed" Value="True" TargetType="Button">
@@ -39,7 +46,7 @@
                 Clicked="Button_Clicked" 
                 VerticalOptions="CenterAndExpand"
                 Style="{StaticResource btnStyle}"/>
-            <Entry x:Name="NumberBox" />
+            <Entry x:Name="NumberBox" Style="{StaticResource entryStyle}"/>
             <Button 
                 x:Name="btn_switch_color" 
                 Text="Switch to GREEN" 
