@@ -9,7 +9,20 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="buttonColor">#FFCCCC</Color>
+            <Style x:Key="btnStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#0000FF"/>
+                <Setter Property="BackgroundColor">
+                    <Setter.Value>
+                        <Color>
+                            <x:Arguments>
+                                <x:Double>1</x:Double>
+                                <x:Double>0.6</x:Double>
+                                <x:Double>0.6</x:Double>
+                            </x:Arguments>
+                        </Color>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -20,13 +33,13 @@
                 Text="Alert" 
                 Clicked="Button_Clicked" 
                 VerticalOptions="CenterAndExpand"
-                BackgroundColor="{StaticResource Key=buttonColor}"/>
+                Style="{StaticResource btnStyle}"/>
             <Button 
                 x:Name="btn_switch_color" 
                 Text="Switch to GREEN" 
                 Clicked="Button_Switch_Color_Clicked" 
                 VerticalOptions="CenterAndExpand"
-                BackgroundColor="{DynamicResource Key=buttonColor}"/>
+                Style="{DynamicResource btnStyle}"/>
             <Button 
                 x:Name="btn_menu" 
                 Text="Menu" 
