@@ -8,7 +8,7 @@
              x:Class="Gibdd.MainPage">
 
     <StackLayout x:Name="layout">
-        <StackLayout BackgroundColor="Gray" Padding="50" Margin="20">
+        <StackLayout BackgroundColor="#FFCCAA" Padding="50" Margin="20">
             <BoxView Color="Green"/>
             <ListView VerticalOptions="Center" HeightRequest="100">
                 <ListView.ItemsSource>
@@ -23,9 +23,14 @@
             VerticalOptions="CenterAndExpand"
             BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
             <Label x:Name="complexLabel">
-                <Label.Text>
-                    I'm thr complex designed label
-                </Label.Text>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="I'm the " TextColor="Green" FontAttributes="Bold"/>
+                        <Span Text="heavy " FontSize="Large"/>
+                        <Span Text="formatted " BackgroundColor="White"/>
+                        <Span Text="string"/>
+                    </FormattedString>
+                </Label.FormattedText>
                 <Label.VerticalOptions>
                     <LayoutOptions Alignment="Center" Expands="True"/>
                 </Label.VerticalOptions>
