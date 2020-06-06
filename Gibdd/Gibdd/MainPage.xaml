@@ -6,42 +6,33 @@
              mc:Ignorable="d"
              xmlns:gibdd="clr-namespace:Gibdd"
              x:Class="Gibdd.MainPage">
-
-    <StackLayout x:Name="layout">
-        <StackLayout BackgroundColor="#FFCCAA" Padding="50" Margin="20">
-            <BoxView Color="Green"/>
-            <Frame BorderColor="SeaGreen" HasShadow="true" />
-            <Image x:Name="image" />
-            <ListView VerticalOptions="Center" HeightRequest="100">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>First</x:String>
-                        <x:String>Second</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
-            <Label x:Name="defaultLabel" Text="Welcome to Xamarin.Forms!" 
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand"
-            BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
-            <Label x:Name="complexLabel">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="I'm the " TextColor="Green" FontAttributes="Bold"/>
-                        <Span Text="heavy " FontSize="Large"/>
-                        <Span Text="formatted " BackgroundColor="White"/>
-                        <Span Text="string"/>
-                    </FormattedString>
-                </Label.FormattedText>
-                <Label.VerticalOptions>
-                    <LayoutOptions Alignment="Center" Expands="True"/>
-                </Label.VerticalOptions>
-            </Label>
-            <Label Text="{x:Static gibdd:MainPage.LabelSampleText}"/>
-            <Button Text="Click me" Clicked="Button_Clicked"/>
-            <Entry x:Name="editBox"  Placeholder="No text here" TextChanged="Entry_TextChanged" Completed="Entry_Completed" Keyboard="Url"/>
-            <Editor HeightRequest="100"/>
-            <!-- entry with many lines -->
+    <ScrollView>
+        <StackLayout x:Name="layout">
+            <WebView Source="https://ya.ru" HeightRequest="500" />
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableRoot>
+                        <TableSection>
+                            <EntryCell Label="Hello" />
+                            <SwitchCell />
+                            <TextCell Text="Delete me"/>
+                            <!--<ImageCell/>-->
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+            <Stepper />
+            <Slider />
+            <DatePicker />
+            <TimePicker />
+            <Picker>
+                <Picker.Items>
+                    <x:String>First one</x:String>
+                    <x:String>Second one</x:String>
+                    <x:String>Third one</x:String>
+                </Picker.Items>
+            </Picker>
+            <Switch />
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

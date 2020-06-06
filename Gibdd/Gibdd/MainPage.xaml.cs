@@ -17,43 +17,7 @@ namespace Gibdd
         public const string LabelSampleText = "CONST TEXT";
         public MainPage()
         {
-
-            // MainPage.xaml.g.cs :
-            //this..LoadFromXaml(""); //- позволяет загружать странички с серверов без обновления приложения
             InitializeComponent();
-
-            var secondLabel = new Label();
-            secondLabel.Text = "I'm the second";
-            ImageSource imageSource = ImageSource.FromUri(new Uri("https://cdn.kapwing.com/final_5d0bcfdd9d322b0014964492_224032.jpg"));
-            image.Source = imageSource;
-
-            //(this.Content as StackLayout)
-            layout.Children.Add(secondLabel);
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            complexLabel.Text = "I'm clicked";
-        }
-
-        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            defaultLabel.Text = "You wrote " + e.NewTextValue;
-        }
-
-        private void Entry_Completed(object sender, EventArgs e)
-        {
-            defaultLabel.Text = "Ok, got it: " + editBox.Text;
-        }
-    }
-
-    public class RedColorExtension : IMarkupExtension
-    //RedColorExtension ~ RedColor
-    {
-        public double Redness { get; set; } // { get; set; } позволяет брать и получать
-        public object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Color.FromRgb(Redness, 0, 0);
         }
     }
 }
