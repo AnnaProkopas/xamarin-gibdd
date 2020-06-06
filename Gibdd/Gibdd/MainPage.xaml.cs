@@ -22,12 +22,15 @@ namespace Gibdd
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            switch (Device.RuntimePlatform) {
-                case Device.iOS:
-                    await DisplayAlert("it's not android", "=)", "ok");
+            switch (Device.Idiom) {
+                case TargetIdiom.Phone:
+                    btn.Text = "btn on phone";
                     break;
-                case Device.Android:
-                    await DisplayAlert("it's android", "=)", "ok");
+                case TargetIdiom.Tablet:
+                    btn.Text = "btn on tablet";
+                    break;
+                case TargetIdiom.Watch:
+                    btn.Text = "btn on watch";
                     break;
             }
         }
