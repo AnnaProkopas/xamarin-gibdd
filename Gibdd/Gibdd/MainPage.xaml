@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:gibdd="clr-namespace:Gibdd"
+             x:Class="Gibdd.MainPage">
+<!-- xmlns  пространства имен -->
+<!-- xmlns:x всё, что нужно для компиляции в C# код -->
+<!-- xmlns:d  для дизайнеров, здесь это игнорируется при запуске-->
+    <StackLayout x:Name="layout" Orientation="Horizontal">
+        <ListView>
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First</x:String>
+                    <x:String>Second</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"
+           BackgroundColor="{gibdd:RedColor Redness=0.5}"/>
+        <Label x:Name="complexLabel">
+            <Label.Text>
+                I'm thr complex designed label
+            </Label.Text>
+            <Label.VerticalOptions>
+                <LayoutOptions Alignment="Center" Expands="True"/>
+            </Label.VerticalOptions>
+        </Label>
+        <Label Text="{x:Static gibdd:MainPage.LabelSampleText}"/>
+        <Button Text="Click me" Clicked="Button_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
