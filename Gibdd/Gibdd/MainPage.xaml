@@ -10,6 +10,7 @@
     <StackLayout x:Name="layout">
         <StackLayout BackgroundColor="#FFCCAA" Padding="50" Margin="20">
             <BoxView Color="Green"/>
+            <Frame BorderColor="SeaGreen" HasShadow="true" />
             <ListView VerticalOptions="Center" HeightRequest="100">
                 <ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
