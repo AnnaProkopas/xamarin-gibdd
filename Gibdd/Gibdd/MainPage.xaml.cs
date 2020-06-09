@@ -19,6 +19,8 @@ namespace Gibdd
         {
             InitializeComponent();
 
+            Title = "MainPage";
+
             timer = new AutoIncrementalValueProvider();
 
             var binding = new Binding()
@@ -28,6 +30,21 @@ namespace Gibdd
             };
 
             timerLabel.SetBinding(Label.TextProperty, binding);
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new Page1());
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ListViewPage1());
+        }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TabbedPage1("super title", (result) => Title = result));
         }
     }
     public class AutoIncrementalValueProvider : INotifyPropertyChanged
