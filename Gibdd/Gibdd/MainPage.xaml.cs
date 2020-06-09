@@ -34,9 +34,11 @@ namespace Gibdd
     {
         private int counter;
         private int fastCounter;
-        public int Counter {
-            get => counter; 
-            private set {
+        public int Counter
+        {
+            get => counter;
+            set
+            {
                 counter = value;
                 OnPropertyChanged("Counter");
             }
@@ -44,10 +46,10 @@ namespace Gibdd
         public int FastCounter
         {
             get => fastCounter;
-            private set
+            set
             {
                 fastCounter = value;
-                OnPropertyChanged("Counter");
+                OnPropertyChanged("FastCounter");
             }
         }
         public AutoIncrementalValueProvider()
@@ -58,51 +60,17 @@ namespace Gibdd
                 Counter += 1;
                 return true;
             });
-            Device.StartTimer(TimeSpan.FromSeconds(300), () =>
+            Device.StartTimer(TimeSpan.FromMilliseconds(300), () =>
             {
-                Counter += 1;
+                FastCounter += 1;
                 return true;
             });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string property) {
+        public void OnPropertyChanged(string property)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            switch (Device.Idiom)
-            {
-                case TargetIdiom.Phone:
-                    btn.Text = "btn on phone";
-                    break;
-                case TargetIdiom.Tablet:
-                    btn.Text = "btn on tablet";
-                    break;
-                case TargetIdiom.Watch:
-                    btn.Text = "btn on watch";
-                    break;
-            }
-        }
-
-        private void Button_Switch_Color_Clicked(object sender, EventArgs e)
-        {
-            Resources["buttonColor"] = Color.LawnGreen;
-        }
     }
-    public class MyTriggerAction : TriggerAction<Entry>
-    {
-        protected override void Invoke(Entry sender)
-        {
-            if (!Int32.TryParse(sender.Text, out var number))
-            {
-                sender.BackgroundColor = Color.IndianRed;
-            }
-            else {
-                sender.BackgroundColor = Color.GreenYellow;
-            }
-        }
-    }
-    
 }
