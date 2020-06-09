@@ -17,9 +17,7 @@
                 BindingContext="{x:Reference Name=slider}"
                 Rotation="{Binding Path=Value}"
              />
-            <Entry x:Name="editBox" />
-            <Label BindingContext="{x:Reference Name=editBox}"
-                   Text="{Binding Path=Text}" />
+            <Label x:Name="timerLabel" />
         </StackLayout>
     </ScrollView>
 </ContentPage>
