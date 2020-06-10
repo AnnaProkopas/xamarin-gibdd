@@ -6,11 +6,11 @@ namespace Gibdd
 {
     public partial class App : Application
     {
-        public App()
+        public App(IPhotographerPlatform platform)
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(platform));
         }
 
         protected override void OnStart()

@@ -15,11 +15,14 @@ namespace Gibdd
     public partial class MainPage : ContentPage
     {
         public AutoIncrementalValueProvider timer;
-        public MainPage()
+        private IPhotographerPlatform platform;
+        public MainPage(IPhotographerPlatform platform)
         {
             InitializeComponent();
 
             Title = "MainPage";
+
+            this.platform = platform;
 
             timer = new AutoIncrementalValueProvider();
 
@@ -34,7 +37,7 @@ namespace Gibdd
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Page1());
+            Navigation.PushModalAsync(new Page1(this.platform));
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
