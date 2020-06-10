@@ -9,6 +9,7 @@ namespace Gibdd
     {
         void TakePhoto();
         bool IsCameraAvailable();
-        Action<ImageSource> PhotoCallback { get; set; }
+        Action<byte[]> PhotoCallback { get; set; }
+        void SaveImage(byte[] data);
     }
 }

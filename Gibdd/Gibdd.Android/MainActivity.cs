@@ -18,10 +18,9 @@ namespace Gibdd.Droid
     [Activity(Label = "Gibdd", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IPhotographerPlatform
     {
-        private const int CameraPermissionRequest = 1;
         private const int CameraRequest = 2;
-
-        public Action<ImageSource> PhotoCallback { get; set; }
+        private byte[] imageData;
+        public Action<byte[]> PhotoCallback { get; set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,6 +47,10 @@ namespace Gibdd.Droid
                 {
                     TakePhotoInternal();
                 }
+                if (p == Android.Manifest.Permission.WriteExternalStorage && g == Permission.Granted)
+                {
+                    SaveImageInternal();
+                }
             }
         }
 
@@ -58,7 +61,7 @@ namespace Gibdd.Droid
                 TakePhotoInternal();
             } else
             {
-                ActivityCompat.RequestPermissions(this, new[] { permmission }, CameraPermissionRequest);
+                ActivityCompat.RequestPermissions(this, new[] { permmission }, 0);
             }
         }
 
@@ -88,10 +91,37 @@ namespace Gibdd.Droid
                         bitmap.Compress(Bitmap.CompressFormat.Jpeg, 80, stream);
                         bitmapData = stream.ToArray();
                     }
-                    var source = ImageSource.FromStream(() => new MemoryStream(bitmapData));
-                    PhotoCallback(source);
+                    PhotoCallback(bitmapData);
                 }
             }
+        }
+        public void SaveImage(byte[] data) 
+        {
+            this.imageData = data;
+            var permmission = Android.Manifest.Permission.WriteExternalStorage;
+            if (Android.App.Application.Context.CheckSelfPermission(permmission) == Permission.Granted)
+            {
+                SaveImageInternal();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, new[] { permmission }, 0);
+            }
+        }
+
+        private void SaveImageInternal()
+        {
+            var picture = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
+            if (!picture.Exists())
+            {
+                picture.Mkdirs();
+            }
+            var file = new Java.IO.File(picture, $"Photo{Guid.NewGuid()}.jpg");
+            File.WriteAllBytes(file.Path, imageData);
+
+            var intent = new Intent(Intent.ActionMediaScannerScanFile);
+            intent.SetData(Android.Net.Uri.FromFile(file));
+            SendBroadcast(intent);
         }
     }
 }

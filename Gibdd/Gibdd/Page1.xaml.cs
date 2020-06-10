@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Gibdd
     public partial class Page1 : ContentPage
     {
         private IPhotographerPlatform platform;
+        private byte[] imageData;
+
         public Page1(IPhotographerPlatform platform)
         {
             InitializeComponent();
@@ -33,9 +36,17 @@ namespace Gibdd
         {
             platform.TakePhoto();
         }
-        private void PhotoTaken(ImageSource source)
+        private void PhotoTaken(byte[] imageData)
         {
+            this.imageData = imageData;
+            var source = ImageSource.FromStream(() => new MemoryStream(imageData));
             takenPhoto.Source = source;
+        }
+
+        private void SaveTakenPhotp_Clicked(object sender, EventArgs e)
+        {
+            
+            platform.SaveImage(imageData);
         }
     }
 }
