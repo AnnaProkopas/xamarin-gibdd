@@ -11,5 +11,7 @@ namespace Gibdd
         bool IsCameraAvailable();
         Action<byte[]> PhotoCallback { get; set; }
         void SaveImage(byte[] data);
+        void SaveToDB();
+        string ReadFromDB();
     }
 }

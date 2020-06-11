@@ -12,11 +12,12 @@ using Android.Support.V4.App;
 using Android.Graphics;
 using Xamarin.Forms;
 using System.IO;
+using SQLite;
 
 namespace Gibdd.Droid
 {
     [Activity(Label = "Gibdd", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IPhotographerPlatform
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IPhotographerPlatform
     {
         private const int CameraRequest = 2;
         private byte[] imageData;
@@ -122,6 +123,57 @@ namespace Gibdd.Droid
             var intent = new Intent(Intent.ActionMediaScannerScanFile);
             intent.SetData(Android.Net.Uri.FromFile(file));
             SendBroadcast(intent);
+        }
+        [Table("items")]
+        private class Sample {
+            [PrimaryKey, AutoIncrement, Column("id")]
+            public int Id { get; set; }
+            [MaxLength(255)]
+            public string Text { get; set; }
+        }
+
+        int c = 0;
+        public void SaveToDB()
+        {
+            var permmission = Android.Manifest.Permission.WriteExternalStorage;
+            if (Android.App.Application.Context.CheckSelfPermission(permmission) == Permission.Granted)
+            {
+                var docs = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
+                if (!docs.Exists())
+                {
+                    docs.Mkdirs();
+                }
+                var file = new Java.IO.File(docs, $"sampledb.db");
+                var db = new SQLiteConnection(file.Path);
+                db.CreateTable<Sample>();
+                var sample = new Sample()
+                {
+                    Text = $"Text{++c}"
+                };
+                db.Insert(sample);
+                db.Close();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, new[] { permmission }, 0);
+            }
+        }
+
+        public string ReadFromDB()
+        {
+            var docs = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
+            if (!docs.Exists())
+            {
+                docs.Mkdirs();
+            }
+            var file = new Java.IO.File(docs, $"sampledb.db");
+            var db = new SQLiteConnection(file.Path);
+            var result = "";
+            foreach (var s in db.Table<Sample>()) {
+                result += s.Text + '\n';
+            }
+            db.Close();
+            return result;
         }
     }
 }

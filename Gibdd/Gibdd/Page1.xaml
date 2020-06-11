@@ -14,6 +14,9 @@
             <Button x:Name="takePhotoBtn" Text="Take Photo" Clicked="takePhotoBtn_Clicked" />
             <Button Text="Go back" Clicked="Button_Clicked"/>
             <Button Text="save taken photo" Clicked="SaveTakenPhotp_Clicked" />
+            <Label x:Name="textFromDB" Text="Text from DB" />
+            <Button Text="Write" Clicked="Write_Clicked" />
+            <Button Text="Read" Clicked="Read_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

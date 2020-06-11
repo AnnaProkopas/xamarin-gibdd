@@ -48,5 +48,14 @@ namespace Gibdd
             
             platform.SaveImage(imageData);
         }
+
+        private void Write_Clicked(object sender, EventArgs e)
+        {
+            platform.SaveToDB();
+        }
+        private void Read_Clicked(object sender, EventArgs e)
+        {
+            textFromDB.Text = platform.ReadFromDB();
+        }
     }
 }
